@@ -20,6 +20,11 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -47,6 +52,15 @@ table {
 
 /* CSS */
 
+html {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
 .wrapper {
     background-color: #999999;
     box-sizing: border-box;
@@ -59,8 +73,10 @@ header {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    padding: 20px;
+    align-items: center;
     box-sizing: border-box;
+    z-index: 10;
+    padding: 20px;
 }
 
 footer {
@@ -70,28 +86,48 @@ footer {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    padding: 20px;
     box-sizing: border-box;
+    z-index: 10;
+    padding: 20px;
 }
 
 p {
     text-transform: uppercase;
     font-weight: 500;
+    cursor: pointer;
+    transition: .5s;
+}
+
+p:hover {
+    color: yellow;
 }
 
 .image-header {
     background-image: url(https://www.julianweidenthaler.com/wp-content/themes/jw/images/logo.png);
     background-repeat: no-repeat;
-    padding: 50px;
+    background-size: cover;
+    width: 80px;
+    height: 80px;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.image-header:hover {
+    background-image: url(https://www.julianweidenthaler.com/wp-content/themes/jw/images/bg.png);
 }
 
 main {
     display: grid;
-    width: 100vw;
+    width: 99vw;
     box-sizing: border-box;
-    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-columns: 1fr;
     grid-auto-rows: auto;
-    padding-top: 10%;
+    padding: 15vh 2vh 2vh 2vh;
+    grid-gap: 1vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-items: center;
 }
 
 img {
@@ -100,31 +136,36 @@ img {
 }
 
 main > div {
-    /* width: 23vw; */
-    /* height: 23vw; */
+    width: 1fr;
     cursor: pointer;
     box-sizing: border-box;
     object-position: center;
-    /* grid-gap: 3vw; */
-    max-width: 1fr;
-    max-height: 1fr;
-    object-fit: scale-down;
     position: relative;
 }
 
 main > div:after {
-    content: "";
+    content: "Lorem Ipsum";
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 128, 0, .6);
-    display: none;
+    opacity: 0;
     z-index: 3;
+    transition: all .5s linear;
 }
 
 main > div:hover:after {
-    display: block;
-    transition: all 1s linear; 
+    transition: all .5s linear;
+    transform: translate(10px, 10px);
+    opacity: 1;
+    overflow: hidden;
+    color: yellow;
 }
